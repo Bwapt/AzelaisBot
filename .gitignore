@@ -1,0 +1,6 @@
+# Tokens
+/src/init/config/*
+
+# Pycache
+*.pyc
+__pycache__/
