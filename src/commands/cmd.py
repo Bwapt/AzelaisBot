@@ -44,17 +44,20 @@ def modLatestVersion(mod):
     return ret
 
 def modVersionList(mod):
-    mods = ModrinthCmd(mod)
+    mods: ModrinthCmd = ModrinthCmd(mod)
+    project: list = mods.project
 
-    if(mods == None):
-        ret = errorMessage()
-    else:
-        ret = "Here is a list of every available versions of **" + mods.getModName() + "** :\n"
+    for i in range (project):
+        if(project[i] == None):
+            ret = errorMessage()
+        else:
+            ret = "Here is a list of every available versions of **" + mods.getModName() + "** :\n"
    
-        versionList = mods.getModVersionList()
+            versionList: list = mods.getModVersionList()
    
-        for i in range (len(versionList)):
-            ret = ret + "- " + versionList[i] + "\n"
+            for j in range (len(versionList)):
+                for k in range (len(versionList[j])):
+                    ret = ret + "- " + versionList[j][k] + "\n"
 
     return ret
 
@@ -63,7 +66,7 @@ def modListLatestVersion(modList):
     ret = "Here is a list of the latest version available of each mods listed :\n"
 
     for i in range (len(modList)):
-        mods = ModrinthCmd(modList[i])
+        mods = ModrinthCmd(modList)
         if(mods.mod == None):
             ret = ret + "- **" + modList[i] + "** : " + errorMessage()
         else:
@@ -97,12 +100,12 @@ def modDesc(mod):
     return ret
 
 # modDownload()
-def modDownload(mod, game_version):
+def modDownload(mod, game_version, loader):
     mods = ModrinthCmd(mod)
     if(mods == None):
             ret = errorMessage()
     else:
-        print(mods.getModDownload(game_version))
+        print(mods.getModDownload(game_version, loader))
 
 
 def modHelp(cmd):

@@ -14,14 +14,6 @@ import lightbulb
 def runbot():
     bot = bot_init()
 
-#    commands.modVersionList("gravestones")
-#    commands.modLatestVersion("gravestones")
-#    commands.modLoader("gravestones")
-#    commands.modSearchList("gravestones")
-#    commands.modLink("gravestones")
-#    commands.modDescription("gravestones")
-#    commands.modListLatestVersion(modList)
-
     @bot.listen(hk.StartedEvent)
     async def on_started(event):
         print("Bot has started !")
@@ -32,149 +24,104 @@ def runbot():
 ############################ COMMANDS #################################
 #######################################################################
 
+    # Group: server
 
     @bot.command
-    @lightbulb.set_max_concurrency(1, lightbulb.GlobalBucket)
-    @lightbulb.command('mod', 'Azelais Group')
+    @lightbulb.command('server', 'Server Group')
     @lightbulb.implements(lightbulb.SlashCommandGroup)
-    async def modgroup(ctx):
+    async def servgroup(ctx):
         pass
 
- 
-    #   /mod search <mod>   #
-    
-    @modgroup.child
-#    @lightbulb.option("loader", "the loader you want to check", type=str, required=False)
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('search', 'search the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def search(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modSearchList(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    @servgroup.child
+    @lightbulb.command('start', 'Start the server')
 
-    #   /mod url <mod>   #
+    @servgroup.child
+    @lightbulb.command('stop', 'Stop the server')
 
-    @modgroup.child
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('url', 'the url of the website page of the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def url(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modURL(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    @servgroup.child
+    @lightbulb.command('restart', 'Restart the server')
 
-    #   /mod lastversion <mod>  #
+    @servgroup.child
+    @lightbulb.command('status', 'Get the server status')
 
-    @modgroup.child
-#    @lightbulb.option("loader", "the loader you want to check", type=str, required=False)
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('lastversion', 'get the last version of the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def lastversion(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modLatestVersion(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
-    
+    @servgroup.child
+    @lightbulb.command('statistic', 'Get the server statistic')
 
-    #   /mod versionlist <mod>  #
+    @servgroup.child
+    @lightbulb.command('ram', 'Get the server ram usage')
 
-    @modgroup.child
-#    @lightbulb.option("loader", "the loader you want to check", type=str, required=False)
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('versionlist', 'get a list of versions of the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def versionlist(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modVersionList(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    @servgroup.child
+    @lightbulb.command('cpu', 'Get the server cpu usage')
+
+    @servgroup.child
+    @lightbulb.command('disk', 'Get the server disk usage')
+
+    @servgroup.child
+    @lightbulb.command('tps', 'Get the server tps')
+
+    @servgroup.child
+    @lightbulb.command('players', 'Get the server players')
+
+    @servgroup.child
+    @lightbulb.command('down', 'Check if the server is down')
+
+    @servgroup.child
+    @lightbulb.command('help', 'Get information about the commands')
 
 
-    #   /mod loader <mod>   #
+    # Group: modpack
 
-    @modgroup.child
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('loader', 'get a list of available loaders for the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def loader(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modLoader(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    @bot.command
+    @lightbulb.command('modpack', 'Modpack Group')
+    @lightbulb.implements(lightbulb.SlashCommandGroup)
+    async def modpackgroup(ctx):
+        pass
 
+    @modpackgroup.child
+    @lightbulb.command('link', 'Get the modpack link')
 
-    #   /mod listlastversion <file>  #
+    @modpackgroup.child
+    @lightbulb.command('description', 'Get the modpack description')
 
-    @modgroup.child
-#    @lightbulb.option("loader", "the loader you want to check", type=str, required=False)
-    @lightbulb.option("file", "the file to check", type=hk.Attachment)
-    @lightbulb.command('listlastversion', 'get the last version of a list of mods')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def modlist(ctx):
-        resp = await ctx.respond("Please wait...")
-        message = await resp.message()
-        async with ctx.options.file.stream() as stream:
-            Webdata = await stream.read()
+    @modpackgroup.child
+    @lightbulb.command('modlist', 'Get the modpack modlist')
 
-            data = Webdata.decode("utf-8")
-        
-            list = data.split("\n")
-            list.remove('')
-            
-            result = cmd.modListLatestVersion(list)
-            print(result)
+    @modpackgroup.child
+    @lightbulb.command('install', 'Get the procedure to install the modpack')
 
-        await message.edit(result)
+    @modpackgroup.child
+    @lightbulb.command('help', 'Get information about the commands')
 
+    # Command: staff
 
-    #   /mod description <mod>  #
+    @bot.command
+    @lightbulb.command('staff', 'Get a description of the staff')
 
-    @modgroup.child
-    @lightbulb.option("mod", "the mod to check", type=str)
-    @lightbulb.command('desc', 'get a short description of the mod')
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def desc(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modDesc(ctx.options.mod)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    # Group: warn
 
-    @modgroup.child
-    @lightbulb.option("command", "the command to check", type=str, choices=("search", "url", "lastversion", "versionlist", "loader", "listlastversion", "desc"))
-    @lightbulb.command("help", "get help for a command")
-    @lightbulb.implements(lightbulb.SlashSubCommand)
-    async def help(ctx):
-        resp = await ctx.respond("Please wait...")
-        result = cmd.modHelp(ctx.options.command)
-        print(result)
-        message = await resp.message()
-        await message.edit(result)
+    @bot.command
+    @lightbulb.command('warn', 'Warn Group')
+    @lightbulb.implements(lightbulb.SlashCommandGroup)
+    async def warngroup(ctx):
+        pass
 
-    #   /mod download <mod> #
+    @warngroup.child
+    @lightbulb.command('add', 'Add a warning to a player')
 
-#    @modgroup.child
-#    @lightbulb.option("loader", "the loader you want to check", type=str, required=False)
-#    @lightbulb.option("game_version", "the game version of the mod", type=str)
-#    @lightbulb.option("mod", "the mod to check", type=str)
-#    @lightbulb.command('download', 'get the url of the mod requested')
-#    @lightbulb.implements(lightbulb.SlashSubCommand)
-#    async def download(ctx):
-#        await ctx.respond("Please wait...")
-#        result = commands.modDownload(ctx.options.mod, ctx.options.game_version)
-#        print(result)
-#        await ctx.respond(result)
+    @warngroup.child
+    @lightbulb.command('remove', 'Remove a warning to a player')
 
+    @warngroup.child
+    @lightbulb.command('list', 'Get the list of warnings of a player')
 
+    @warngroup.child
+    @lightbulb.command('clear', 'Clear the warnings of a player')
+
+    @warngroup.child
+    @lightbulb.command('ban', 'Ban a player')
+
+    @warngroup.child
+    @lightbulb.command('help', 'Get information about the commands')
 
     bot.run()
 
