@@ -1,5 +1,5 @@
 # Tokens
-/src/init/config/*
+/src/config.ini
 
 # Pycache
 *.pyc
