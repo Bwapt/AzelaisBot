@@ -1,8 +1,8 @@
 import aiohttp
 import json
 
-async def server_players(token, server_code):
-    url = f"https://rest.minestrator.com/api/v1/server/content/{server_code}"
+async def server_cpu(token, server_code):
+    url = f"https://rest.minestrator.com/api/v1/server/ressources/{server_code}"
 
     headers = {
         "Authorization": f"{token}",
@@ -15,7 +15,7 @@ async def server_players(token, server_code):
                 print(response)
                 data = response['data'][0]
                 if data['status'] == 'on':
-                    return f"Joueurs en ligne : {data['players']['online']} / {data['players']['max']}"
+                    return f"CPU : {data['cpu']['live']} / {data['cpu']['max']}"
                 elif data['status'] == 'starting':
                     return "Le serveur est en cours de démarrage"
                 else :
