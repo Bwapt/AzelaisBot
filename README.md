@@ -25,7 +25,7 @@ pip install -U discord.py
 - [x] cpu
 - [x] disk
 - [x] players
-- [] help
+- [ ] help
 
 #### Modpack
 - [ ] link
