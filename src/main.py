@@ -5,6 +5,8 @@ from discord.ext import commands
 import configparser
 
 from commands.server import Server
+from commands.modpack import Modpack
+from commands.warn import Warn
 
 # CONFIG
 
@@ -18,7 +20,7 @@ intents.message_content = True
 
 class AzelaisBot(commands.Bot):
     async def setup_hook(self) -> None:
-        await bot.add_cog(Server(bot))
+        await bot.add_cog([Server(bot), Modpack(bot), Warn(bot)])
 
 bot = AzelaisBot(command_prefix='/', intents=intents)
 
