@@ -28,20 +28,20 @@ pip install -U discord.py
 - [] help
 
 #### Modpack
-- [] link
-- [] install
-- [] modlist
-- [] desc
-- [] help
+- [ ] link
+- [ ] install
+- [ ] modlist
+- [ ] desc
+- [ ] help
 
 #### Warn
-- [] add
-- [] remove
-- [] show
-- [] ban
-- [] help
+- [ ] add
+- [ ] remove
+- [ ] show
+- [ ] ban
+- [ ] help
 
 #### Misc
-- [] staff
-- [] twitch
-- [] help
+- [ ] staff
+- [ ] twitch
+- [ ] help
