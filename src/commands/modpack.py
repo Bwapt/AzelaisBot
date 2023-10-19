@@ -9,14 +9,14 @@ class Modpack(commands.GroupCog, name = "modpack"):
     
     @app_commands.command(name="link")
     async def link(self, interaction: discord.Interaction) -> None:
-        response = ''
-        embed = discord.Embed(title="Notification Serveur", description=response, color=0x2ecc71)
+        link = '[Clique ici pour accéder au modpack du serveur](https://www.curseforge.com/minecraft/modpacks/azazelcompany-modpack)'
+        embed = discord.Embed(title="Notification Serveur", description=link, color=0x2ecc71)
         await interaction.response.send_message(embed=embed)
     
     @app_commands.command(name="desc")
     async def desc(self, interaction: discord.Interaction) -> None:
-        response = ''
-        embed = discord.Embed(title="Notification Serveur", description=response, color=0x2ecc71)
+        desc = ''
+        embed = discord.Embed(title="Notification Serveur", description=desc, color=0x2ecc71)
         await interaction.response.send_message(embed=embed)
     
     @app_commands.command(name="install")

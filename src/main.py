@@ -3,6 +3,7 @@ from typing import Literal, Optional
 import discord
 from discord.ext import commands
 import configparser
+import asyncio
 
 from commands.server import Server
 from commands.modpack import Modpack
@@ -20,7 +21,7 @@ intents.message_content = True
 
 class AzelaisBot(commands.Bot):
     async def setup_hook(self) -> None:
-        await bot.add_cog([Server(bot), Modpack(bot), Warn(bot)])
+        await asyncio.gather(bot.add_cog(Server(bot)), bot.add_cog(Modpack(bot)), bot.add_cog(Warn(bot)))
 
 bot = AzelaisBot(command_prefix='/', intents=intents)
 
