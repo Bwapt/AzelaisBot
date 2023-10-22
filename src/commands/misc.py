@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 
+import asyncio
+
 from functions.misc.help import command_groups
 from functions.misc.help import server_commands
 from functions.misc.help import modpack_commands
@@ -30,7 +32,15 @@ class Misc(commands.Cog):
     @app_commands.command(name="help", description="Affiche la liste des commandes")
     async def help(self, interaction: discord.Interaction) -> None:
         embed = discord.Embed(title="Notification Serveur", description=command_groups, color=0x5dade2)
-        await interaction.response.send_message("")
+        await interaction.response.send_message(embed=embed)
+        message = await interaction.original_response()
+        asyncio.gather(
+            message.add_reaction("1️⃣"),
+            message.add_reaction("2️⃣"),
+            message.add_reaction("3️⃣"),
+            message.add_reaction("4️⃣")
+        )
+        
 
     
     
