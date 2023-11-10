@@ -25,23 +25,25 @@ pip install -U discord.py
 - [x] cpu
 - [x] disk
 - [x] players
-- [ ] help
 
 #### Modpack
-- [ ] link
+- [x] link
 - [ ] install
-- [ ] modlist
-- [ ] desc
-- [ ] help
+- [x] modlist
+- [x] desc
 
 #### Warn
-- [ ] add
-- [ ] remove
-- [ ] show
+- [x] add
+- [x] remove
+- [x] list
+- [ ] banlist
+- [x] show
 - [ ] ban
-- [ ] help
+- [ ] unban
+- [ ] kick
 
 #### Misc
 - [ ] staff
 - [ ] twitch
+- [ ] youtube
 - [ ] help

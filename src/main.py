@@ -10,6 +10,14 @@ from commands.modpack import Modpack
 from commands.warn import Warn
 from commands.misc import Misc
 
+## DEBUG ##
+from functions.modpack.desc import modpack_desc
+from functions.modpack.link import modpack_link
+from functions.modpack.modlist import modpack_modlist
+
+from functions.warn.access_list_files import *
+###########
+
 # CONFIG
 
 config = configparser.ConfigParser()
@@ -72,3 +80,44 @@ async def sync(ctx: commands.Context, guilds: commands.Greedy[discord.Object], s
 # RUN
 
 bot.run(token=DISCORD_TOKEN)
+
+"""
+async def test():
+    MODPACK_ID = "61694"
+
+    desc = await modpack_desc(MODPACK_ID)
+    link = await modpack_link(MODPACK_ID)
+    modlist = await modpack_modlist(MODPACK_ID)
+    
+    print(desc)
+    print(link)
+    print(modlist)
+
+asyncio.run(test())
+"""
+
+"""
+if __name__ == "__main__":
+
+    banlist = {}
+    warnlist = {}
+
+    warnlist["zizi"] = 1
+    warnlist["prout"] = 3
+
+    banlist["pipi"] = "lololol"
+    banlist["caca"] = "heheheh"
+
+    str_warnlist(warnlist)
+    str_banlist(banlist)
+
+    banlist = {}
+    warnlist = {}
+
+    banlist = get_banlist()
+    warnlist = get_warnlist()
+
+    print(banlist["caca"])
+    print("\n")
+    print(warnlist["zizi"])
+"""
