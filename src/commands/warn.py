@@ -43,14 +43,14 @@ class Warn(commands.GroupCog, name = "warn"):
     @is_bwapt()
     @app_commands.command(name="list", description="Afficher la liste des avertissements")
     async def list(self, interaction: discord.Interaction) -> None:
-        list = await warn_list()
+        list = await warn_list(interaction=interaction)
         embed = discord.Embed(title="Notification Serveur", description=list, color=0x2ecc71)
         await interaction.response.send_message(embed=embed)
     
     @is_bwapt()
     @app_commands.command(name="banlist", description="Afficher la liste des avertissements")
     async def banlist(self, interaction: discord.Interaction) -> None:
-        list = await warn_banlist()
+        list = await warn_banlist(interaction=interaction)
         embed = discord.Embed(title="Notification Serveur", description=list, color=0x2ecc71)
         await interaction.response.send_message(embed=embed)
 
