@@ -17,10 +17,10 @@ async def server_stop(token, server_code):
             if response.status == 200:
                 response = json.loads(await response.text())
                 print(response)
-                if "error" in response:
+                if 'logged' == False in response or 'error' in response:
                     return "Le serveur a eu un problème lors de l'arrêt"
                 else :
-                    return "Arrêt du serveur !"
+                    return "Le serveur s'arrête !"
             else:
                 return "Le serveur a eu un problème lors de l'arrêt"
 

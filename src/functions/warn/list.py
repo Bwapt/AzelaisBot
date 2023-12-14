@@ -8,8 +8,10 @@ async def warn_list(interaction: discord.Interaction):
 
     warned_users = get_warnlist()
 
-    for user in warned_users:
-        user = interaction.client.get_user(user)
-        ret += f"- {user.global_name} = {warned_users[user.id]}"
+    for userId in warned_users:
+
+        user = await interaction.client.fetch_user(userId)
+
+        ret += f"- {user.global_name} = {warned_users[str(user.id)]}"
     
     return ret

@@ -13,14 +13,15 @@ async def server_status(token, server_code):
             if response.status == 200:
                 response = json.loads(await response.text())
                 print(response)
-                data = response['data'][0]
-                if data['status'] == 'on':
-                    return "Le serveur est allumé"
-                elif data['status'] == 'starting':
-                    return "Le serveur est en cours de démarrage"
-                else :
-                    return "Le serveur est éteint"
-            else:
-                return "Les informations du serveur n'ont pas pu être récupérées."
+                if 'data' in response:
+                    data = response['data'][0]
+                    if data['status'] == 'on':
+                        return "Le serveur est allumé"
+                    elif data['status'] == 'starting':
+                        return "Le serveur est en cours de démarrage"
+                    else :
+                        return "Le serveur est éteint"
+                else:
+                    return "Les informations du serveur n'ont pas pu être récupérées."
 
 

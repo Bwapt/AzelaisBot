@@ -17,10 +17,10 @@ async def server_restart(token, server_code):
             if response.status == 200:
                 response = json.loads(await response.text())
                 print(response)
-                if "error" in response:
+                if 'logged' == False in response or "error" in response:
                     return "Le serveur a eu un problème au redémarrage"
                 else :
-                    return "Redémarrage du serveur !"
+                    return "Le serveur redémarre !"
             else:
                 return "Le serveur a eu un problème au redémarrage"
 

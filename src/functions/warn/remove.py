@@ -3,7 +3,7 @@ import discord
 from .access_list_files import get_warnlist, str_warnlist
 
 def warn_remove(user: discord.User):
-    userId: int = user.id
+    userId: str = str(user.id)
 
     warned_users = get_warnlist()
 
@@ -15,6 +15,6 @@ def warn_remove(user: discord.User):
     else :
         ret = f"{user.global_name} est sage au quotidien, il n'a pas d'avertissements à retirer."
 
-    str_warnlist()
+    str_warnlist(warned_users)
 
     return ret
