@@ -1,6 +1,6 @@
 import discord
 
-from .access_list_files import get_warnlist
+from misc.access_list_files import get_warnlist
 
 def warn_show(user: discord.User):
     userId : str = str(user.id)

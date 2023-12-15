@@ -1,7 +1,7 @@
 import discord
 from discord import app_commands
 
-from functions.warn.access_list_files import get_banlist, str_banlist
+from misc.access_list_files import get_banlist, str_banlist
 
 async def warn_unban(interaction: discord.Interaction, user: str, reason: str):
 

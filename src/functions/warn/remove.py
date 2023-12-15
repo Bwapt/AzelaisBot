@@ -1,6 +1,6 @@
 import discord
 
-from .access_list_files import get_warnlist, str_warnlist
+from misc.access_list_files import get_warnlist, str_warnlist
 
 def warn_remove(user: discord.User):
     userId: str = str(user.id)

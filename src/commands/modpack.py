@@ -4,6 +4,7 @@ from discord import app_commands
 import configparser
 
 from functions.modpack.desc import modpack_desc
+from functions.modpack.install import modpack_install_launcher_selection
 from functions.modpack.link import modpack_link
 from functions.modpack.modlist import modpack_modlist
 
@@ -46,17 +47,14 @@ class Modpack(commands.GroupCog, name = "modpack"):
     @is_bwapt()
     @app_commands.command(name="install", description="Affiche le guide d'installation du modpack")
     async def install(self, interaction: discord.Interaction) -> None:
-        response = ''
 
-        embed = discord.Embed(title="Installation du modpack", description=response,  color=0x2ecc71)
-
-        await interaction.response.send_message(embed=embed)
+        await modpack_install_launcher_selection(interaction)
 
     @is_bwapt()
     @app_commands.command(name="modlist", description="Affiche la liste des mods du modpack")
     async def modlist(self, interaction: discord.Interaction) -> None:
         modlist = await modpack_modlist(MODPACK_ID)
 
-        embed = discord.Embed(title="Listes des mods du modpack", description=modlist, color=0x2ecc71)
+        embed = discord.Embed(title="Liste des mods du modpack", description=modlist, color=0x2ecc71)
 
         await interaction.response.send_message(embed=embed)

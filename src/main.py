@@ -15,7 +15,7 @@ from functions.modpack.desc import modpack_desc
 from functions.modpack.link import modpack_link
 from functions.modpack.modlist import modpack_modlist
 
-from functions.warn.access_list_files import *
+from misc.access_list_files import *
 ###########
 
 # CONFIG
@@ -30,7 +30,10 @@ intents.message_content = True
 
 class AzelaisBot(commands.Bot):
     async def setup_hook(self) -> None:
-        await asyncio.gather(bot.add_cog(Server(bot)), bot.add_cog(Modpack(bot)), bot.add_cog(Warn(bot)), bot.add_cog(Misc(bot)))
+        await asyncio.gather(bot.add_cog(Server(bot)), 
+                             bot.add_cog(Modpack(bot)), 
+                             bot.add_cog(Warn(bot)), 
+                             bot.add_cog(Misc(bot)))
 
 bot = AzelaisBot(command_prefix='/', intents=intents)
 

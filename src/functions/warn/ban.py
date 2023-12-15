@@ -1,6 +1,6 @@
 import discord
 
-from .access_list_files import get_banlist, str_banlist
+from misc.access_list_files import get_banlist, str_banlist
 
 async def warn_ban(user: discord.User, reason: str, interaction: discord.Interaction):
     userId: int = user.id
