@@ -16,34 +16,4 @@ pip install -U discord.py
 
 ### Avancement
 
-#### Server
-- [x] start
-- [x] stop
-- [x] restart
-- [x] status
-- [x] ram
-- [x] cpu
-- [x] disk
-- [x] players
-
-#### Modpack
-- [x] link
-- [ ] install
-- [x] modlist
-- [x] desc
-
-#### Warn
-- [x] add
-- [x] remove
-- [x] list
-- [ ] banlist
-- [x] show
-- [ ] ban
-- [ ] unban
-- [ ] kick
-
-#### Misc
-- [ ] staff
-- [ ] twitch
-- [ ] youtube
-- [ ] help
+  > https://github.com/users/Bwapt/projects/2/views/3
