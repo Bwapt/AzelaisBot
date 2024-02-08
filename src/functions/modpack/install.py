@@ -1,5 +1,5 @@
-from typing import Optional
 import discord
+
 
 async def modpack_install_launcher_selection(interaction: discord.Interaction):
 
@@ -14,9 +14,10 @@ async def modpack_install_launcher_selection(interaction: discord.Interaction):
 
     await interaction.response.send_message(embed=embed, view=view)
 
+
 async def modpack_install_prismlaucher(interaction: discord.Interaction, state: int):
     thumbnail = "https://i.ibb.co/Rp2CVXH/prismlauncher.png"
-    view = Selection_Button()
+    view = Prism_Selection_Button()
 
     match state:
         case 0:
@@ -27,11 +28,13 @@ async def modpack_install_prismlaucher(interaction: discord.Interaction, state: 
                             value="Cela te redirigera vers la page de Prism Launcher.")
             
             embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/0YQqY5Q/0-website.png")
             
             await interaction.response.send_message(embed=embed, view=view)
         
         case 1:
-            embed = discord.Embed(title="Etape 2 : Connexion à ton compte Mojang/Microsoft", 
+            embed = discord.Embed(title="Etape 2 :", 
                                   description="On va maintenant connecter ton compte Minecraft.")
             
             embed.add_field(name="https://prismlauncher.org/download/", 
@@ -41,9 +44,10 @@ async def modpack_install_prismlaucher(interaction: discord.Interaction, state: 
             
             await interaction.response.send_message(embed=embed, view=view)
 
+
 async def modpack_install_curseforge(interaction: discord.Interaction, state: int):
     thumbnail = "https://i.ibb.co/Hg7Cb2d/curseforge2.png"
-    view = Selection_Button()   
+    view = CurseForge_Selection_Button()   
 
     match state:
         case 0:
@@ -55,16 +59,85 @@ async def modpack_install_curseforge(interaction: discord.Interaction, state: in
             
             embed.set_thumbnail(url=thumbnail)
 
+            embed.set_image(url="https://i.ibb.co/HrMm708/0-website.png")
+
             await interaction.response.send_message(embed=embed, view=view)
 
         case 1:
-            embed = discord.Embed(title="Etape 2 : Connecter ton compte Mojang/Microsoft", 
-                                  description="On va maintenant connecter ton compte Minecraft.")
+            embed = discord.Embed(title="Etape 2 : Installation du Modpack AzazelCompany", 
+                                  description="On va maintenant installer le Modpack AzazelCompany.")
             
-            embed.add_field(name="https://www.curseforge.com/download/app", 
-                            value="Cela vous redirigera vers la page de CurseForge.")
+            embed.add_field(name="Clique sur l'icône Minecraft", 
+                            value="Cela va automatiquement t'installer le nécessaire pour jouer à tes instances de Minecraft.")
             
             embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/zJRwM71/1-launcher.png")
+
+            await interaction.response.send_message(embed=embed, view=view)
+
+        case 2:
+            embed = discord.Embed(title="Etape 2 : Installation du modpack", 
+                                  description="On va maintenant installer le Modpack AzazelCompany.")
+            
+            embed.add_field(name="'Recherche AzazelCompany' dans la barre de recherche en haut de la page, et clique sur le bouton 'Installer'.", 
+                            value="Cela va t'installer une instance du Modpack AzazelCompany.")
+            
+            embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/5rNPQDg/2-launcher.png")
+
+            await interaction.response.send_message(embed=embed, view=view)
+
+        case 3:
+            embed = discord.Embed(title="Etape 2 : Installation du modpack",
+                                  description="On va maintenant installer le Modpack AzazelCompany.")
+            
+            embed.add_field(name="Reviens sur la page d'accueil, et clique sur le bouton 'Jouer' de l'instance AzazelCompany.",
+                            value="Cela va lancer le jeu avec le Modpack AzazelCompany.")
+            
+            embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/37yHMh0/3-launcher.png")
+
+            await interaction.response.send_message(embed=embed, view=view)
+        
+        case 4:
+            embed = discord.Embed(title="Etape 3 : Connexion du compte Mojang/Microsoft",
+                                    description="On va maintenant connecter ton compte Minecraft.")
+            
+            embed.add_field(name="Clique sur le bouton 'Compte Microsoft' eau centre de la page.",
+                            value="Cela va te rediriger vers la page de connexion de ton compte Microsoft.")
+            
+            embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/TTFTkff/4-launcher.png")
+
+            await interaction.response.send_message(embed=embed, view=view)
+
+        case 5:
+            embed = discord.Embed(title="Etape 3 : Connexion du compte Mojang/Microsoft",
+                                  description="On va maintenant connecter ton compte Minecraft.")
+            
+            embed.add_field(name="Connecte-toi avec ton compte Microsoft.",
+                            value="Renseigne tes informations de connexion (email/mot de passe) pour pouvoir connecter ton compte Microsoft.")
+            
+            embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/JrhQYzg/5-launcher.png")
+
+            await interaction.response.send_message(embed=embed, view=view)
+
+        case 6:
+            embed = discord.Embed(title="Etape 4 : Lancement du jeu",
+                                    description="On va maintenant lancer le jeu.")
+            
+            embed.add_field(name="Clique sur le bouton 'Jouer' en bas de la page.",
+                            value="On est à la fin ! Cela va lancer le jeu avec le Modpack AzazelCompany.")
+            
+            embed.set_thumbnail(url=thumbnail)
+
+            embed.set_image(url="https://i.ibb.co/fk2J5LL/6-launcher.png")
 
             await interaction.response.send_message(embed=embed, view=view)
 
@@ -89,17 +162,19 @@ class Launcher_Selection_Button(discord.ui.View):
         
 
 
-class Selection_Button(discord.ui.View):
+class Prism_Selection_Button(discord.ui.View):
+
+    state = 0
+
     def __init__(self):
         super().__init__()
-        self.state = 0
     
     @discord.ui.button(label="Continuer", style=discord.ButtonStyle.success)
     async def continuer(self, interaction: discord.Interaction, button: discord.ui.Button):
 
         await interaction.message.delete()
 
-        self.state += 1
+        Prism_Selection_Button.state += 1
 
         await modpack_install_prismlaucher(interaction=interaction, state=self.state)
     
@@ -113,7 +188,41 @@ class Selection_Button(discord.ui.View):
 
         await interaction.message.delete()
 
-        self.state = 0
+        Prism_Selection_Button.state = 0
+
+        embed = discord.Embed(title="Annulation de la procédure", description="On espère avoir pu t'aider !")
+
+        await interaction.response.send_message(embed=embed)
+
+
+class CurseForge_Selection_Button(discord.ui.View):
+
+    state = 0
+
+    def __init__(self):
+        super().__init__()
+        self.state
+    
+    @discord.ui.button(label="Continuer", style=discord.ButtonStyle.success)
+    async def continuer(self, interaction: discord.Interaction, button: discord.ui.Button):
+
+        await interaction.message.delete()
+
+        CurseForge_Selection_Button.state += 1
+
+        await modpack_install_curseforge(interaction=interaction, state=self.state)
+    
+    @discord.ui.button(label="Demander de l'aide", style=discord.ButtonStyle.secondary)
+    async def aide(self, interaction: discord.Interaction, button: discord.ui.Button):
+
+        await interaction.response.send_message("Hey <@405746739199344670> ! On a besoin de toi ici !")
+    
+    @discord.ui.button(label="Annuler", style=discord.ButtonStyle.danger)
+    async def annuler(self, interaction: discord.Interaction, button: discord.ui.Button):
+
+        await interaction.message.delete()
+
+        CurseForge_Selection_Button.state = 0
 
         embed = discord.Embed(title="Annulation de la procédure", description="On espère avoir pu t'aider !")
 
