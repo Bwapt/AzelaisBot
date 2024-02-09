@@ -21,9 +21,11 @@ class Misc(commands.Cog):
     @is_bwapt()
     @twitch_group.command(name="add", description="Ajoute un Streamer")
     async def add(self, interaction: discord.Interaction, url: str) -> None:
-        add = await twitch_add(url)
+        
+        await interaction.response.defer()
+        add = await twitch_add(url=url)
 
-        await interaction.response.send_message("")
+        await interaction.followup.send(content=add)
     
     @is_bwapt()
     @twitch_group.command(name="remove", description="Retire un Streamer")
